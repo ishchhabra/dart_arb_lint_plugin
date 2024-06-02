@@ -1,0 +1,20 @@
+name: arb_lint_plugin
+description: A Very Good Project created by Very Good CLI.
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: "^3.3.0"
+
+dev_dependencies:
+  mocktail: ^1.0.3
+  test: ^1.25.2
+  very_good_analysis: ^5.1.0
+dependencies:
+  analyzer: ^6.4.1
+  custom_lint_builder: ^0.6.4
+  json_ast:
+    git:
+      url: https://github.com/ishchhabra/dart_json_ast.git
+      ref: b5e50bdfb03a48160adaba6cedec93a56c88e63e
+  source_span: ^1.10.0
