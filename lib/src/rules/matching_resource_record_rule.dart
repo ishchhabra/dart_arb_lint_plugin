@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:analyzer/error/error.dart';
 import 'package:analyzer/error/listener.dart';
 
 import 'package:custom_lint_builder/custom_lint_builder.dart';
-import 'package:json_ast/json_ast.dart' hide SourceLocation, SourceSpan;
-import 'package:source_span/source_span.dart';
+import 'package:json_ast/json_ast.dart';
 
 /// A custom lint rule that checks whether there is a matching resource record
 /// for every metadata entry.
@@ -14,6 +14,7 @@ class MatchingResourceRecordRule extends LintRule {
   const MatchingResourceRecordRule() : super(code: _code);
 
   static const _code = LintCode(
+    errorSeverity: ErrorSeverity.ERROR,
     name: 'missing_resource_record',
     problemMessage: '{0} does not have a corresponding resource record.',
   );
@@ -62,19 +63,7 @@ class _JsonASTVisitor extends JsonASTVisitor {
     }
 
     if (!json.containsKey(key.substring(1))) {
-      final start = SourceLocation(
-        0,
-        line: node.span.start.line,
-        column: node.span.start.column,
-      );
-      final end = SourceLocation(
-        0,
-        line: node.span.end.line,
-        column: node.span.end.column,
-      );
-      final span = SourceSpan(start, end, node.value);
-      errorReporter.reportErrorForSpan(errorCode, span);
-      // errorReporter.reportErrorForOffset()
+      errorReporter.reportErrorForSpan(errorCode, node.span, [key]);
     }
   }
 }
