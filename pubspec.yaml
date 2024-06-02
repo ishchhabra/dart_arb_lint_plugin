@@ -16,4 +16,4 @@ dependencies:
   json_ast:
     git:
       url: https://github.com/ishchhabra/dart_json_ast.git
-      ref: 21eec436adb58d84e4575880a809c13245777437
+      ref: 081d8592007911b8ef65a7ae522e8a7b0bcb4608
