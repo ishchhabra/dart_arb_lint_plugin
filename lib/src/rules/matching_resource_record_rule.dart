@@ -20,7 +20,7 @@ class MatchingResourceRecordRule extends LintRule {
   );
 
   @override
-  List<String> get filesToAnalyze => ['*.arb'];
+  List<String> get filesToAnalyze => ['**.arb'];
 
   @override
   void run(
